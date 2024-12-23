@@ -30,7 +30,7 @@ var cryptoData = {
 
 // var cars = ['tesla', 'lamborghini', 'byd', 'ferrari', 'bmw', 'neta']
 
-// // list.sort(function(first, second){ return 0 } );
+// list.sort((first, second)=> first-second );
 
 // cars.sort(function (euta, arko) {
     
