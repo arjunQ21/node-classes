@@ -1,5 +1,8 @@
 
 const duiSecondPaxiVanxu = new Promise(function (resolve, reject) {
+    // Only one of resolve or reject will be called
+    // When resolve is called first, reject will never be called and vice versa
+    
     const interval = setTimeout(function () {
         resolve(1)
         clearTimeout(interval);
