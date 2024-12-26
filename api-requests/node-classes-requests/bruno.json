@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "node-classes-requests",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
