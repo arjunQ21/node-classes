@@ -1,6 +1,7 @@
 import express from 'express'
 import { config } from 'dotenv';
 import { getCurrentViews, increaseViews, addTask, removeTask } from './helpers/views.js';
+
 config();
 
 const server = new express();
