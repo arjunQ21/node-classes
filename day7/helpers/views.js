@@ -24,5 +24,27 @@ function increaseViews () {
     return getCurrentViews();
 }
 
+
+
+function addTask (taskName) {
+    try {
+
+        if (!taskName) {
+            throw new Error("Task Name needed.");
+        }
+
+        const { todo } = getCurrentViews();
+
+        if (todo.includes(taskName)) {
+            throw new Error("Task already exists");
+        } else {
+            todo.push(taskName);
+        }
+
+    } catch (e) {
+        
+    }
+}
+
 // exporting modules
 export { getCurrentViews, increaseViews }
