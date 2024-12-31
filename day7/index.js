@@ -1,6 +1,6 @@
 import express from 'express'
 import { config } from 'dotenv';
-import { getCurrentViews, increaseViews, addTask } from './helpers/views.js';
+import { getCurrentViews, increaseViews, addTask, removeTask } from './helpers/views.js';
 config();
 
 const server = new express();
@@ -22,6 +22,14 @@ server.get("/views/increase", function (req, res) {
 server.get("/views/todo/add/:task", function (req, res) {
     try {
         return res.json(addTask(req.params.task));
+    } catch (e) {
+        return res.status(400).json({error: e.message})
+    }
+})
+
+server.get("/views/todo/remove/:task", function (req, res) {
+    try {
+        return res.json(removeTask(req.params.task));
     } catch (e) {
         return res.status(400).json({error: e.message})
     }

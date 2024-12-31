@@ -27,23 +27,44 @@ function increaseViews () {
 
 
 function addTask (taskName) {
-        if (!taskName) {
-            throw new Error("Task Name needed.");
-        }
+    if (!taskName) {
+        throw new Error("Task Name needed.");
+    }
 
-        let { todo, count } = getCurrentViews();
+    let { todo, count } = getCurrentViews();
 
-        if (todo.includes(taskName)) {
-            throw new Error("Task already exists");
-        } else {
-            todo = [...todo, taskName]
+    if (todo.includes(taskName)) {
+        throw new Error(`Task '${taskName}' already exists.`);
+    } else {
+        todo = [...todo, taskName]
 
-            const toWrite = { todo, count };
-            const jsonObj = JSON.stringify(toWrite)
-            writeFileSync("views.json", jsonObj, { encoding: "utf-8" })
-            return toWrite;
-        }
+        const toWrite = { todo, count };
+        const jsonObj = JSON.stringify(toWrite)
+        writeFileSync("views.json", jsonObj, { encoding: "utf-8" })
+        return toWrite;
+    }
+}
+
+function removeTask (taskName) {
+    if (!taskName) {
+        throw new Error("Task Name needed.");
+    }
+    let { todo, count } = getCurrentViews();
+    if (todo.includes(taskName)) {
+
+        const index = todo.indexOf(taskName);
+
+        todo.splice(index, 1);
+
+        const toWrite = { todo, count };
+        const jsonObj = JSON.stringify(toWrite)
+        writeFileSync("views.json", jsonObj, { encoding: "utf-8" })
+        return toWrite;
+
+    } else {
+        throw new Error(`Task '${taskName}' not found.`);
+    }
 }
 
 // exporting modules
-export { getCurrentViews, increaseViews, addTask }
+export { getCurrentViews, increaseViews, addTask, removeTask }
