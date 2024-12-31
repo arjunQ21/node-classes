@@ -27,24 +27,23 @@ function increaseViews () {
 
 
 function addTask (taskName) {
-    try {
-
         if (!taskName) {
             throw new Error("Task Name needed.");
         }
 
-        const { todo } = getCurrentViews();
+        let { todo, count } = getCurrentViews();
 
         if (todo.includes(taskName)) {
             throw new Error("Task already exists");
         } else {
-            todo.push(taskName);
-        }
+            todo = [...todo, taskName]
 
-    } catch (e) {
-        
-    }
+            const toWrite = { todo, count };
+            const jsonObj = JSON.stringify(toWrite)
+            writeFileSync("views.json", jsonObj, { encoding: "utf-8" })
+            return toWrite;
+        }
 }
 
 // exporting modules
-export { getCurrentViews, increaseViews }
+export { getCurrentViews, increaseViews, addTask }
