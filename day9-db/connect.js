@@ -1,16 +1,16 @@
 import { config } from 'dotenv'
 import mongoose from 'mongoose'
 
-import {insertCar} from "./models/car.js"
+
 
 config();
 
-mongoose.connect(process.env.MONGODB_URL).then(async () => {
-    console.log("Connected to MongoDB.")
-    var insertDetails = await insertCar({ name: "Roadster", price: 240000, makeYear: "2018", manufacturer: "Tesla" })
-    console.log({insertDetails})
+const connectToDB = () => mongoose.connect(process.env.MONGODB_URL).then(async () => {
+    return Promise.resolve("Connected to MongoDB.")
 })
     .catch(function (err) {
-        console.error("Error connecting to MongoDB", err)
+        return Promise.reject(err)
     })
+
+export default connectToDB
 
