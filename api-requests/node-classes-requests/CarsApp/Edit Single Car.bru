@@ -1,0 +1,20 @@
+meta {
+  name: Edit Single Car
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3001/67765116195b03f065ffbad4
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "New Car",
+    "manufacturer": "New manuf",
+    "makeYear": "2022",
+    "price": 50000
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Add New Car
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3001/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Cybertruck",
+    "manufacturer": "Tesla",
+    "price": 45000,
+    "makeYear": "2019"
+  }
+}
