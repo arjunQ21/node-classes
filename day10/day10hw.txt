@@ -1,0 +1,86 @@
+Day 10 HW:
+
+Make a crypto management system with MongoDB and Express in a new project.
+Tasks:
+
+
+Endpoints:
+
+1. GET /
+  Get all currencies with the following metadata
+ {
+    date: <today's date>,
+    source: "coinbase",
+    updatedBy: "hari bahadur",
+    currencies: [
+        {
+            'name': "BitCoin",
+            "exchangeRate": 97000,
+            'foundIn': '2005'
+            '_id': <ObjectID>
+        },
+        {
+            'name': "Ethereum",
+            "exchangeRate": 3200,
+            'foundIn': '2013'
+            '_id': <ObjectID>
+        },
+        {
+            'name': "DogeCOIN",
+            "exchangeRate": 0.32,
+            'foundIn': '2016'
+            '_id': <ObjectID>
+        },
+        {
+            'name': "Stack",
+            "exchangeRate": 2.2,
+            'foundIn': '2019'
+            '_id': <ObjectID>
+        }
+    ],
+}
+
+2. PUT /
+    Tod Edit the metadata source, updatedBy
+
+    Tips: Create a separate collection to save these metadata
+
+    Sample Response:
+
+    {
+        metadata: {
+            "source": "coinbase",
+            "updatedBy": "hari"
+        }
+    }
+
+3. POST /
+    Add new currency with the following details: 
+     {
+            'name': "Stack",
+            "exchangeRate": 2.2,
+            'foundIn': '2019'
+        }
+
+4. GET /:currencyId
+    Get details of single currency
+    Sample Response:
+        {
+            'name': "Stack",
+            "exchangeRate": 2.2,
+            'foundIn': '2019'
+            '_id': <ObjectID>
+        }
+
+5. PUT /:currencyId
+    Edit details of single currency
+
+6. DELETE /:currencyId
+    Delete a currency by its ID
+
+
+Use joi-validator to validate the request data.
+Use nested express routes
+Use .env file
+
+
