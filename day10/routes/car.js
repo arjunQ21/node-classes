@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Car, { insertCar } from "../models/car.js"
+import { addCarSchema } from "../validations/car.js";
 const carRouter = Router();
 
 // Get all Cars
@@ -11,21 +12,13 @@ carRouter.get("/", async function (req, res) {
 // add new car
 carRouter.post("/", async function (req, res) {
     try {
-        const { name, manufacturer, price, makeYear } = req.body;
-        if (!name || name.length < 5) {
-            throw new Error("Name should have at least 5 characters.");
-        }
-        if (!manufacturer || manufacturer.length < 3) {
-            throw new Error("Manufacturer should have at least 3 characters.");
-        }
-        if (!price || parseInt(price) === NaN) {
-            throw new Error("Price should be a valid number.");
-        }
-        if (!makeYear ) {
-            throw new Error("Makeyear should not be empty.");
-        }
 
-        const newCar = await insertCar({ name, manufacturer, price, makeYear })
+        const validationResult = addCarSchema.validate(req.body, { abortEarly: false })
+        if (validationResult.error) {
+
+            throw new Error("Validation Error: "+ validationResult.error.message)
+        }
+        const newCar = await insertCar(validationResult.value)
 
         return res.status(201).json({car: newCar})
         
