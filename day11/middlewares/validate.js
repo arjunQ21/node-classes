@@ -1,6 +1,3 @@
-import Joi from "joi"
-
-
 /**
  * Sample usage:
  * validate({body: Joi.object().keys()...., params: Joi.number()...})
