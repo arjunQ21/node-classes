@@ -1,0 +1,25 @@
+Hello World!  
+Regex is powerful.  
+User: arjunq21@gmail.com  
+Date of birth: 1997-11-14  
+Phone number: +977-9866008814  
+Website: https://arjunq21.com  
+Account balance: $5,500,000.00  
+Order #12345 - Status: Shipped  
+Password123!  
+Address: Pokhara-25, Hemja  
+Temperature: 25°C  
+File path: C:\Users\Arjun\Documents\file.txt  
+#hashtag_example  
+Mention: @username
+Regular Expressions
+
+
+http://localhost:3000
+
+Quantifier:
+ ? => 0 or 1
+ + => 1 or more
+ * => 0 or more
+ {a,b} => length between a and b
+ {a} => length equal to a
