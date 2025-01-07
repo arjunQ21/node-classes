@@ -14,11 +14,13 @@ const tableOf = (n, interval) => {
 }
 
 async function runLines () {
+    
     console.log("Hello0")
     await tableOf(5, 200).then((e) => console.log(e))
     console.log("Hello")
     tableOf(6, 100).then((e) => console.log(e))
     console.log("Hello1")
-}
 
-runLines();
+}
+console.log(__dirname)
+// runLines();

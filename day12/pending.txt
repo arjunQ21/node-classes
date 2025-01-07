@@ -1,0 +1,5 @@
+Authentication - jwt
+CORS
+Static files serving
+Request / respones headers
+Error-handling middleware

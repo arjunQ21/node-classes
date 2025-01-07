@@ -14,7 +14,7 @@ currencyRouter.get("/", async function (req, res) {
     try {
         const metadata = (await getMetaData()).toObject();
         const currencies = await Currency.find({})
-        return res.json({ ...metadata, currencies: currencies , _id: undefined, __v: undefined, date: new Date().toISOString()})
+        return res.json({ ...metadata, currencies: currencies.map((e) => ({ ...e.toObject(), __v: undefined })), _id: undefined, __v: undefined, date: new Date().toISOString() })
     } catch (e) {
         return res.status(500).json({ error: e.message })
     }

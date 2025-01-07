@@ -2,12 +2,14 @@ import express from 'express'
 import connectToDB from './connect.js'
 import { carRouter } from './routes/car.js'
 import currencyRouter from './routes/currency.js'
+import requestLogger from './middlewares/requestLogger.js'
 
 
 connectToDB().then(function (connectMessage) {
     console.log(connectMessage)
     const app = express();
     app.use(express.json())
+    app.use(requestLogger)
     app.use("/currencies", currencyRouter)
     app.use(carRouter)
     const port = process.env.PORT || 4000;
