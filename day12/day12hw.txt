@@ -1,0 +1,17 @@
+Make Login & Registration System in Node.js
+
+Required user info:
+ - name
+ - email
+ - address
+ - phone
+ - password
+
+Structure routes as such:
+
+POST /auth/login
+ accept email and password here
+
+POST /auth/register
+ accept all user details here
+ - make sure email is unique for all users
