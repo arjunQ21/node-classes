@@ -1,0 +1,15 @@
+Implement the following additional routes:
+
+1. POST /
+    => Add new car to database
+
+2. GET /:carId
+    => Get details of single car by its ObjectID
+
+3. PUT /:carId
+    => Edit details of single car by its id in URL
+
+4: DELETE /:carId
+    => Delete car by this ID
+
+Note: Try to validate data before inserting to / updating the database.
