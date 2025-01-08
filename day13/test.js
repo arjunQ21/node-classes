@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt'
+
 // import { getMetaData, updateMetaData } from "./models/cryptoMetadata.js";
 
 // import connectToDB from "./connect.js"
@@ -11,12 +13,27 @@
 // })
 
 
+// let i = 0;
 
-function sumUpto (n) {
-    if (n == 1) return n;
-    else return n + sumUpto(n - 1);
-}
+// async function hash (text) {
+//     const hashed = await bcrypt.hash(text, 10);
+//     console.log(hashed + 
+//         "\n\n"
+//     )
+//     if (i++ < 10) {
+//         await hash(text);
+//     }
+// }
 
-console.log(sumUpto(10));
+
+// hash("Krishna")
+
+// bcrypt.compare("Krishna", "$2b$10$HznnxIY/hypFKvcDVW6hXO04VC.of0dIGYt.xa4qVVzh8svIySMEm").then(function (e) {
+//     if (e) {
+//         console.log("matched")
+//     } else {
+//         console.log("not matched")
+//     }
+// })
 
 

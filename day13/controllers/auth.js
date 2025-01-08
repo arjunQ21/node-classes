@@ -1,14 +1,14 @@
 import { catchAsync } from "../helpers/catchAsync.js";
 import User from "../models/user.js";
 import { findUserByEmail } from "../services/user.js";
-
+import bcrypt from 'bcrypt'
 
 
 const register = catchAsync(async function (req, res) {
 
     const { name, email, password, address, phone } = req.body;
 
-    console.log({ name, email, password, address, phone })
+    // console.log({ name, email, password, address, phone })
 
     const existingUser = await findUserByEmail(req.body.email);
 
@@ -16,12 +16,33 @@ const register = catchAsync(async function (req, res) {
         throw new Error("Email already taken");
     }
 
-    const newUser = (await User.create(req.body)).toObject();
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    const newUser = (await User.create({ ...req.body, password: hashedPassword })).toObject();
 
     return res.send({ user: { ...newUser, password: undefined } })
 
 })
 
-const authController = {register}
+const login = catchAsync(async function (req, res) {
+    
+    const { email, password } = req.body;
+    const existingUser = await findUserByEmail(email);
+
+    if (!existingUser) {
+        throw new Error("User not found.");
+    }
+
+    const hasedPassword = existingUser.password;
+
+    const matched = await bcrypt.compare(password, hasedPassword)
+
+    if (matched) {
+        return res.send({user: {...existingUser, password: undefined}})
+    }else throw new Error("Email or password invalid.")
+
+})
+
+const authController = { register, login }
 
 export default authController;
