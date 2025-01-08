@@ -3,9 +3,9 @@ const catchAsync = function (requestHandler) {
         try {
             await requestHandler(req, res, next);
         } catch (e) {
-            return res.status(400).send({error: e.message})
-       }
-   }
+            return res.status(400).send({ error: e.message })
+        }
+    }
 }
 
-export {catchAsync}
+export { catchAsync }

@@ -3,9 +3,6 @@ import authRouter from "./auth.js";
 
 const routes = Router();
 
-routes.use("/auth", function (req, res, next) { 
-    console.log(req.body)
-    next();
-}, authRouter);
+routes.use("/auth", authRouter);
 
 export default routes;

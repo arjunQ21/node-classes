@@ -6,10 +6,6 @@ import bcrypt from 'bcrypt'
 
 const register = catchAsync(async function (req, res) {
 
-    const { name, email, password, address, phone } = req.body;
-
-    // console.log({ name, email, password, address, phone })
-
     const existingUser = await findUserByEmail(req.body.email);
 
     if (existingUser) {
@@ -25,7 +21,7 @@ const register = catchAsync(async function (req, res) {
 })
 
 const login = catchAsync(async function (req, res) {
-    
+
     const { email, password } = req.body;
     const existingUser = await findUserByEmail(email);
 
@@ -38,8 +34,8 @@ const login = catchAsync(async function (req, res) {
     const matched = await bcrypt.compare(password, hasedPassword)
 
     if (matched) {
-        return res.send({user: {...existingUser, password: undefined}})
-    }else throw new Error("Email or password invalid.")
+        return res.send({ user: { ...existingUser, password: undefined } })
+    } else throw new Error("Email or password invalid.")
 
 })
 
