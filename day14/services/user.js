@@ -1,4 +1,5 @@
 import User from "../models/user.js"
+import jwt from "jsonwebtoken"
 
 const findUserByEmail = async function (email) {
     const user = await User.findOne({ email });
@@ -6,4 +7,8 @@ const findUserByEmail = async function (email) {
     else return null;
 }
 
-export { findUserByEmail }
+const createJWT = function (userId) {
+    return jwt.sign({ sub: userId }, process.env.JWT_SECRET_KEY);
+}
+
+export { findUserByEmail, createJWT }

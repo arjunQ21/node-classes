@@ -1,6 +1,6 @@
 import { catchAsync } from "../helpers/catchAsync.js";
 import User from "../models/user.js";
-import { findUserByEmail } from "../services/user.js";
+import { createJWT, findUserByEmail } from "../services/user.js";
 import bcrypt from 'bcrypt'
 
 
@@ -34,7 +34,8 @@ const login = catchAsync(async function (req, res) {
     const matched = await bcrypt.compare(password, hasedPassword)
 
     if (matched) {
-        return res.send({ user: { ...existingUser, password: undefined } })
+        const token = createJWT(existingUser._id);
+        return res.send({ user: { ...existingUser, password: undefined, token } })
     } else throw new Error("Email or password invalid.")
 
 })
