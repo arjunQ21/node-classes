@@ -1,0 +1,17 @@
+Create the following routes with JWT Authentication.
+
+GET /products/:userId
+ Get all prodcuts from a specific user 
+
+GET /products/:productId
+Get single product
+
+PUT /products/:productId
+    Edit details of a product
+    ** Require login in this route.
+    allow only the creater of the product to edit the details.
+
+DELETE /products/:productId
+    Delete a certain product
+    ** Require login in this route.
+    allow only the creater of the product to delete it.
