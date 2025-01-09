@@ -13,6 +13,7 @@ const captureUserFromAuthToken = async function (req, res, next) {
             if (payload.sub) {
                 const userId = payload.sub;
                 const user = await User.findOne({ _id: userId });
+                // modify the the request object for accesing in other routes and controllers
                 req.user = user;
                 console.log("Login found of: " + user.name);
             } else {
