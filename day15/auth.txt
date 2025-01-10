@@ -1,0 +1,26 @@
+Krishna, Bishal:
+Request headers: userId
+Advantages:
+
+
+// 7d
+// 64
+
+Disadvantages:
+- If someone knows or tries new id, then he can create product by their name
+
+Suyan: 
+Request headers: email, password
+    set createdBy = email in new product
+
+Advantages:
+- Secured
+
+Disadvantages:
+- createdBy could contain ObjectID instead of email
+- sending email and password everytime is inefficient
+- have to run login logic and validation everytime
+
+
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzdlM2Y4NmI4ZjNmMTY3MTY5ZmRhMDEiLCJpYXQiOjE3MzY0MTQyNDN9.9txc0zda4tI3Hf8TGDnmzB6KP0WFuxqsfVFRakyIC-Y"
+
