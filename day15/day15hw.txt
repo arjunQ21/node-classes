@@ -1,0 +1,26 @@
+Homeworks:
+
+Implement the following APIs:
+
+1. GET /joke
+Pull a joke from this API: https://api.chucknorris.io/jokes/random
+use fetch api to fetch data from this endpoint and give the "value" property of data in response
+
+2. Create a static site with the following strucutre in Node.js
+
+    - public
+        - index.html
+        - index.css
+        - index.js
+        photos/
+            - 1.jpg
+            - 2.jpg
+            - 3.jpg
+
+    Required Functionalities:
+    1. photo viewing links:
+     User should be able to click on 3 links (each for an image) in index.html page, which takes them to a page that shows the images on these links.
+     Use express.static to achieve this.
+
+    2. Show jokes in home page
+    Call the previously made /joke API from this page, and show joke in index.html page
