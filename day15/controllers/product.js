@@ -1,14 +1,9 @@
 import { catchAsync } from "../helpers/catchAsync.js";
 import Product from "../models/product.js";
 
-
-
 const addNew = catchAsync(async function (req, res) {
-
     const newProduct = await Product.create({ ...req.body, createdBy: req.user._id })
-
     return res.status(201).send({ product: newProduct })
-
 });
 
 const getAll = async function (req, res) {
@@ -50,6 +45,8 @@ const deleteSingle = catchAsync(async function (req, res) {
     if (creatorId != currentRequesterId) throw new Error("You are not authorized to delete this product.");
 
     await req.currentProduct.deleteOne();
+
+    res.setHeader("x-Content-Deleted", 'true');
 
     return res.send({message: "Product deleted."})
 
