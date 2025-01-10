@@ -43,6 +43,18 @@ const updateSingle = catchAsync(async function (req, res) {
 
 })
 
-const productController = { addNew, getAll, getForUser, getSingle, updateSingle }
+const deleteSingle = catchAsync(async function (req, res) {
+    // verify if the person deleting a product is its creator
+    const creatorId = req.currentProduct.createdBy.toString();
+    const currentRequesterId = req.user._id.toString();
+    if (creatorId != currentRequesterId) throw new Error("You are not authorized to delete this product.");
+
+    await req.currentProduct.deleteOne();
+
+    return res.send({message: "Product deleted."})
+
+})
+
+const productController = { addNew, getAll, getForUser, getSingle, updateSingle, deleteSingle }
 
 export default productController;

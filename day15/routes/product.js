@@ -24,6 +24,8 @@ singleProductRouter.get("/", productController.getSingle)
 
 // edit single product
 singleProductRouter.put("/", validate(productValidation.addNew), requireLogin, productController.updateSingle )
+// delete single product
+singleProductRouter.delete("/", requireLogin, productController.deleteSingle )
 
 
 export default productRouter;
