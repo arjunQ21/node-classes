@@ -1,0 +1,23 @@
+meta {
+  name: Get all
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:3001/products
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzdlM2Y4NmI4ZjNmMTY3MTY5ZmRhMDEiLCJpYXQiOjE3MzY0MTQwNjd9.zuQ1tK94DXHQu7ZTqDy7ZPO2dPnOoYY0Lu7Nam0ccGI
+}
+
+body:json {
+  {
+    "cost": 45,
+    "stockQuantity": 0,
+    "name": "Chocopie"
+  }
+}

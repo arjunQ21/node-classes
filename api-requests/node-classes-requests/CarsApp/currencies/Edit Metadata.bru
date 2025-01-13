@@ -1,0 +1,18 @@
+meta {
+  name: Edit Metadata
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://localhost:3001/currencies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "updatedBy": "Hari K.C.",
+    "source": "Twitter"
+  }
+}

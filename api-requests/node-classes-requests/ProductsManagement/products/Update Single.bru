@@ -1,0 +1,23 @@
+meta {
+  name: Update Single
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3001/products/6780df36b08e3b35bbefcaed
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{AUTH_TOKEN}}
+}
+
+body:json {
+  {
+    "cost": 450,
+    "stockQuantity": 10,
+    "name": "Chocopies"
+  }
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Edit Single Currency
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3001/currencies/677ba1c001c1058118b14782
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Doge Coin 123",
+    "exchangeRate": 90000,
+    "foundIn": "2025-01-06T09:22:40.117Z"
+  }
+}

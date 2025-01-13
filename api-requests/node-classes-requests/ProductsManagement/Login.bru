@@ -1,0 +1,28 @@
+meta {
+  name: Login
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:3001/auth/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzdlM2Y4NmI4ZjNmMTY3MTY5ZmRhMDEiLCJpYXQiOjE3MzY0MTQwNjd9.zuQ1tK94DXHQu7ZTqDy7ZPO2dPnOoYY0Lu7Nam0ccGI
+}
+
+body:json {
+  {
+    "email": "hari@gmail.com",
+    "password": "AsdfSasd5f3"
+  }
+}
+
+script:post-response {
+  if(res.body.user && res.body.user.token){
+    bru.setEnvVar("AUTH_TOKEN",res.body.user.token)
+  }
+}

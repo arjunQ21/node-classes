@@ -1,0 +1,23 @@
+meta {
+  name: Add New
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/products
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{AUTH_TOKEN}}
+}
+
+body:json {
+  {
+    "cost": 45,
+    "stockQuantity": 0,
+    "name": "Snickers"
+  }
+}

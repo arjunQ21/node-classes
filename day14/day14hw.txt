@@ -1,7 +1,7 @@
 Create the following routes with JWT Authentication.
 
-GET /products/:userId
- Get all prodcuts from a specific user 
+GET /products/by/:userId
+ Get all prodcuts created by a specific user 
 
 GET /products/:productId
 Get single product

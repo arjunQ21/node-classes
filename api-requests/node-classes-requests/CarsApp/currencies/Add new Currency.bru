@@ -1,0 +1,19 @@
+meta {
+  name: Add new Currency
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3001/currencies
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "DogeCoin",
+    "exchangeRate": 0.8,
+    "foundIn": "2017"
+  }
+}

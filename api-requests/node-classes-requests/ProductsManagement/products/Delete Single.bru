@@ -1,0 +1,23 @@
+meta {
+  name: Delete Single
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:3001/products/6780df36b08e3b35bbefcaed
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{AUTH_TOKEN}}
+}
+
+body:json {
+  {
+    "cost": 450,
+    "stockQuantity": 10,
+    "name": "Chocopies"
+  }
+}

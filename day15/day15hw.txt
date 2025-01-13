@@ -24,3 +24,4 @@ use fetch api to fetch data from this endpoint and give the "value" property of 
 
     2. Show jokes in home page
     Call the previously made /joke API from this page, and show joke in index.html page
+    Use fetch api in browser to call this API.
