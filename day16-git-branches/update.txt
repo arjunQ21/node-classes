@@ -1,1 +1,2 @@
-We are learning git branching now.
+We are learning git branching right now.
+This is the second step of our learning.
