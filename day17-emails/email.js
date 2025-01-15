@@ -61,5 +61,7 @@ function showLoader () {
 
 
 
+
+
 Promise.race([main(), showLoader()]).then((r) => console.log(r)).catch(console.error);
 
