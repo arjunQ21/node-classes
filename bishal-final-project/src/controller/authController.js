@@ -92,8 +92,6 @@ const verifyEmail = catchAsync(async (req, res) => {
   });
 });
 
-export { register, verifyEmail };
-
 const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
 
@@ -122,11 +120,69 @@ const login = catchAsync(async (req, res) => {
     },
   });
 });
+const sendResetPasswordOTP = catchAsync(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    throw new Error("Email is required");
+  }
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("User with this email does not exist");
+  }
+
+  const otp = generateOTP();
+  const expirationTime = new Date(Date.now() + 10 * 60 * 1000); // OTP valid for 10 minutes
+
+  await Otp.create({ email, otp, expirationTime });
+
+  await sendEmailWithOTP(email, otp);
+
+  return res.status(200).json({
+    message: "OTP sent to your email. Please use it to reset your password.",
+  });
+});
+const resetPassword = catchAsync(async (req, res) => {
+  const { email, otp, newPassword } = req.body;
+
+  if (!email || !otp || !newPassword) {
+    throw new Error("Email, OTP, and new password are required");
+  }
+
+  const otpRecord = await Otp.findOne({ email, otp });
+
+  if (!otpRecord) {
+    throw new Error("Invalid OTP or email");
+  }
+
+  if (new Date() > otpRecord.expirationTime) {
+    throw new Error("OTP has expired");
+  }
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  user.password = hashedPassword;
+  await user.save();
+
+  await Otp.deleteOne({ email, otp });
+
+  return res.status(200).json({
+    message: "Password reset successfully.",
+  });
+});
 
 const authController = {
   register,
   verifyEmail,
   login,
+  sendResetPasswordOTP,
+  resetPassword,
 };
 
 export default authController;
