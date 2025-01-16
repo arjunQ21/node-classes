@@ -1,0 +1,51 @@
+**Create and Update group details:**
+
+**Schemas**
+
+Group Schema:
+{
+name,
+description,
+creatorID,
+isPrivate,
+createdAt
+}
+
+GroupMember Schema:
+{
+userId,
+groupId,
+joinDate,
+seenMessageID
+}
+
+Routes to implement:
+Create Group
+**POST /groups**
+
+View all public groups.
+**GET /groups**
+
+View the groups in which a user has joined:
+**GET /groups/mine**
+
+Single Group:
+**GET /groups/:groupdID**
+This route gives group details with member details.
+
+Edit group information
+**PUT /groups/:groupdID**
+
+Delete group
+**DELETE /groups/:groupdID**
+Make sure only the creator can edit and delete groups.
+
+Add member to a private group:
+**POST /groups/:groupID/members**
+
+Remove member from a private group:
+**DELETE /groups/:groupID/members**
+
+Join a public group
+**POST /groups/:groupdID/join**
+Make sure the group is public here.
