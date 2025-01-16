@@ -12,6 +12,8 @@ import requireLogin from "../middlewares/requireLogin.js";
 const groupRouter = Router();
 
 
-groupRouter.post("/group",captureUserFromAuthToken,requireLogin,validate(authValidation.group), authController.createGroup)
+groupRouter.post("/groups",captureUserFromAuthToken,requireLogin,validate(authValidation.group), authController.createGroup)
+
+groupRouter.get("/groups",captureUserFromAuthToken,requireLogin, authController.viewAllGroup)
 
 export default groupRouter

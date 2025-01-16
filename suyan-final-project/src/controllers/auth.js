@@ -1,9 +1,10 @@
 import { catchAsync } from "../helpers/catchAsync.js";
-import { createJWT, findUserbyemail } from "../services/user.js";
+import { createJWT, findGroupByName, findUserbyemail } from "../services/user.js";
 import User from '../models/user.js';
 import bcrypt from 'bcrypt'
 import { sendRecoveryEmail } from "./forgot-pw.js";
 import Group from "../models/group.js";
+
 
 const register = catchAsync( async  function (req,res) {
 
@@ -109,20 +110,33 @@ const login = catchAsync(async function (req, res) {
   );
     return res.json("Updated New Password !!!")
   })
-
+//To create a new group
   const createGroup = catchAsync (async function(req,res){
 
-    
-
       const { name, description , isPrivate} = req.body;
+
+      const existingName = await findGroupByName(name);
+      if (existingName){
+        throw new Error("Group Name already exists . Please use different group name")
+      }
       const group = await Group.create(
         { ...req.body, creatorID: req.user._id }
       )
-
       return res.json({group});
-
-
   }  )
+//To view all public group
+  const viewAllGroup= catchAsync (async function (req,res){
 
-const authController = { register,login , forgotPassword, newPassword, createGroup}
+    // to check for the private group
+    // const groupName = await Group.find({isPrivate: true});
+    
+    const groupName = await Group.find({isPrivate: true});
+    if(groupName.length === 0){
+      throw new Error ("Not found any group")
+    }
+    return res.json(groupName);
+
+  })
+
+const authController = { register,login , forgotPassword, newPassword, createGroup, viewAllGroup}
 export default authController
