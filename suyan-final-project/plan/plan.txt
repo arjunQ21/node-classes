@@ -1,0 +1,18 @@
+Create a plan for group chatting application. Following are the requirements for backend:
+
+- New users can login/register.
+- Logged in users whose email is verified can send message in the group.
+- Users can recover their password if they forgot.
+- Users can set their profile image.
+
+
+Your task:
+- Create an API Plan. It includes:
+   - Endpoint details with request method, request URL and request body
+   - The expected response for each request.
+   - Create logic plan for each route, i.e, the expected code in the controllers.
+
+- Create Database plan:
+  - About what tables will be created and how data is stored within them.
+* No need to code this today *
+ 
