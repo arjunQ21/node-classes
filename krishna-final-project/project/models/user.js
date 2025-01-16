@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const UserSchema = new Schema(
   {
@@ -15,13 +15,21 @@ const UserSchema = new Schema(
       required: true
     },
     otp: {
-        type: Number,
-        default:null
+      type: Number,
+      default: null
+    },
+    isVerify: {
+      type: Boolean,
+      default: false
     },
     expiresAt: {
-        type: Date,
-        default:null // Expiration date for OTP
+      type: Date,
+      default: null // Expiration date for OTP
     },
+    otpAttempts: { 
+      type: Number, 
+      default: 0 
+    }
   },
   {
     timestamps: true

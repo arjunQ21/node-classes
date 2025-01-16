@@ -1,10 +1,10 @@
-const { date } = require("joi");
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const GroupSchema=new Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     description:{
         type:String,

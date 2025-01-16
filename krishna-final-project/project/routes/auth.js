@@ -7,7 +7,7 @@ const authRouter=Router();
 
 
 authRouter.post('/register',validate(validationSchema.register),authController.register);
-
+authRouter.post('/verify-email',validate(validationSchema.verifyEmail),authController.verifyEmail);
 authRouter.post('/login',validate(validationSchema.login),authController.login)
 authRouter.post('/forget-password',validate(validationSchema.forget),authController.forgetPassword)
 authRouter.post('/reset-Password',validate(validationSchema.reset),authController.resetPassword)

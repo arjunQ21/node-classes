@@ -24,7 +24,7 @@ const sendmail = async (email) => {
         const info = await transporter.sendMail({
             from: '"Test User" <node-class@padxu.com>', 
             to: email,
-            subject: "Password Reset OTP",
+            subject: "OTP",
             text: `Use this code to verify your email: ${otp}`,
             html: `<p>Dear User, <br /> Use this code to verify your email: 
                    <b style='font-size: 20px;'>${otp}</b></p>`
@@ -32,7 +32,7 @@ const sendmail = async (email) => {
 
        // console.log("Email sent successfully:", info);  // Ensure this gets logged
 
-        return otp;  // Return OTP and message
+        return {otp:otp};  // Return OTP and message
     } catch (error) {
         console.error("Error in sendmail:", error);  // Log errors during email sending
         throw new Error("Failed to send OTP");

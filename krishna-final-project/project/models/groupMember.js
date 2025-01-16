@@ -1,5 +1,4 @@
-const { date } = require("joi");
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const GroupMemberSchema = new Schema(
   {

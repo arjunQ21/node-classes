@@ -9,6 +9,12 @@ export default{
         })
         
     },
+    verifyEmail:{
+        body: joi.object().keys({
+            email:joi.string().email().required(),
+            otp: joi.number().integer().min(100000).max(999999).required()
+        })
+    },
     login:{
         body:joi.object().keys({
             email:joi.string().email().required(),
