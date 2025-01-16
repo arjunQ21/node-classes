@@ -1,32 +1,40 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import User from "../model/user.js";
 
 const getUserFromAuthToken = async function (req, res, next) {
     try {
         const authToken = req.headers['authorization'];
-        const match = authToken.match(new RegExp("^Bearer (.*)$"))
+        console.log("Auth token:", authToken); 
+
+        const match = authToken && authToken.match(new RegExp("^Bearer (.*)$"));
         if (match && match[1]) {
-            const payload = jwt.verify(match[1], process.env.JWT_SECRET_KEY)
+            const payload = jwt.verify(match[1], process.env.JWT_SECRET_KEY);
+            console.log("Decoded Payload:", payload);  
 
-            if (!payload) throw new Error("Payload could not be read.");
+            if (!payload) {
+                throw new Error("Invalid token payload.");
+            }
 
-            if (payload.sub) {
-                const userId = payload.sub;
-                const user = await User.findOne({ _id: userId });
-                // modify the the request object for accesing in other routes and controllers
+            if (payload.userid) {
+                const user = await User.findById(payload.userid);  
+                if (!user) {
+                    return res.status(404).json({ error: "User not found." });
+                }
+
                 req.user = user;
-                console.log("Login found of: " + user.name);
+                console.log("Authenticated user:", user);
             } else {
-                throw new Error("Subject not found in payload.");
+                return res.status(401).json({ error: "User ID not found in token." });
             }
         } else {
-            throw new Error("Bearer token not found.");
+            return res.status(401).json({ error: "Bearer token missing or invalid." });
         }
+
+        next(); 
     } catch (e) {
-        console.log("Auth Error: ", e.message)
-    } finally {
-        next();
+        console.error("Auth Error: ", e.message);
+        return res.status(401).json({ error: e.message });
     }
-}
+};
 
 export default getUserFromAuthToken;

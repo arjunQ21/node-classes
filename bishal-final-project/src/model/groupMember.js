@@ -1,9 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const groupMemberSchema = new mongoose.Schema({
-  groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  joinedAt: { type: Date, default: Date.now },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  groupId: { type: mongoose.Schema.Types.ObjectId, ref: "Group", required: true },
+  joinDate: { type: Date, default: Date.now },
+  seenMessageID: { type: mongoose.Schema.Types.ObjectId, ref: "Message", default: null }, // Assuming a Message schema exists
 });
 
-export const GroupMember = mongoose.model('GroupMember', groupMemberSchema);
+const GroupMember = mongoose.model("GroupMember", groupMemberSchema);
+
+export default GroupMember;

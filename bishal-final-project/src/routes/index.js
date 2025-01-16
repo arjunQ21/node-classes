@@ -1,13 +1,13 @@
 import { Router } from "express";
-import {authRouter,resetPasswordRouter} from "./authRoute.js";
-
+import { authRouter, resetPasswordRouter } from "./authRoute.js";
+import groupRouter from "./groupRoute.js"; // Import group router
 
 const routes = Router();
 
-// Authentication routes
 routes.use("/auth", authRouter);
 
-// Password reset routes
-routes.use("/password", resetPasswordRouter); // Add the reset password routes
+routes.use("/password", resetPasswordRouter);
+
+routes.use("/", groupRouter); 
 
 export default routes;
