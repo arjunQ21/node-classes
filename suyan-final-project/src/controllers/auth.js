@@ -3,8 +3,7 @@ import { createJWT, findUserbyemail } from "../services/user.js";
 import User from '../models/user.js';
 import bcrypt from 'bcrypt'
 import { sendRecoveryEmail } from "./forgot-pw.js";
-
-
+import Group from "../models/group.js";
 
 const register = catchAsync( async  function (req,res) {
 
@@ -73,9 +72,7 @@ const login = catchAsync(async function (req, res) {
     return res.status(200).json({
         message: "Recovery email sent successfully.",
         emailInfo,
-    });
-
-  
+    });  
   })
 
   const newPassword = catchAsync( async function (req,res) {
@@ -102,9 +99,6 @@ const login = catchAsync(async function (req, res) {
   
     //Hashing new password
     const newHashedPassword= await bcrypt.hash(NewPassword,10);
-
-    
-
     await User.findOneAndUpdate(
       { email },
       {
@@ -113,10 +107,22 @@ const login = catchAsync(async function (req, res) {
           password: newHashedPassword
       }
   );
-
     return res.json("Updated New Password !!!")
-
   })
 
-const authController = { register,login , forgotPassword, newPassword}
+  const createGroup = catchAsync (async function(req,res){
+
+    
+
+      const { name, description , isPrivate} = req.body;
+      const group = await Group.create(
+        { ...req.body, creatorId: req.user._id }
+      )
+
+      return res.json({group});
+
+
+  }  )
+
+const authController = { register,login , forgotPassword, newPassword, createGroup}
 export default authController
