@@ -1,26 +1,39 @@
-
 const validate = function (validationSchemas = {}) {
     return function (req, res, next) {
         const { body, params, query, headers } = validationSchemas;
 
-        let validationResult;
+        let errors = [];
 
         if (body) {
-            validationResult = body.validate(req.body, { abortEarly: false });
+            const bodyValidation = body.validate(req.body, { abortEarly: false });
+            if (bodyValidation.error) {
+                errors.push(...bodyValidation.error.details.map(detail => detail.message));
+            }
         }
         if (params) {
-            validationResult = params.validate(req.params, { abortEarly: false });
+            const paramsValidation = params.validate(req.params, { abortEarly: false });
+            if (paramsValidation.error) {
+                errors.push(...paramsValidation.error.details.map(detail => detail.message));
+            }
         }
         if (query) {
-            validationResult = query.validate(req.query, { abortEarly: false });
+            const queryValidation = query.validate(req.query, { abortEarly: false });
+            if (queryValidation.error) {
+                errors.push(...queryValidation.error.details.map(detail => detail.message));
+            }
         }
         if (headers) {
-            validationResult = headers.validate(req.headers, { abortEarly: false });
+            const headersValidation = headers.validate(req.headers, { abortEarly: false });
+            if (headersValidation.error) {
+                errors.push(...headersValidation.error.details.map(detail => detail.message));
+            }
         }
-        if (validationResult.error) {
-            return res.status(400).send({ error: validationResult.error.message })
-        } else return next();
-    }
-}
+
+        if (errors.length > 0) {
+            return res.status(400).send({ error: errors.join(", ") });
+        }
+        return next();
+    };
+};
 
 export default validate;
