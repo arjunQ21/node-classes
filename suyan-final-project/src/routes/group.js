@@ -2,18 +2,24 @@ import { Router } from "express";
 
 import validate from "../middlewares/validate.js"
 import authValidation from '../validation/user.js';
-import authController from '../controllers/auth.js'
-
 import captureUserFromAuthToken from "../middlewares/captureUserFromAuthToken.js";
 import requireLogin from "../middlewares/requireLogin.js";
-
+import groupController from "../controllers/group.js";
 
 
 const groupRouter = Router();
 
+// to create a new group
+groupRouter.post("/groups",captureUserFromAuthToken,requireLogin,validate(authValidation.group),  groupController.createGroup)
 
-groupRouter.post("/groups",captureUserFromAuthToken,requireLogin,validate(authValidation.group), authController.createGroup)
+//to view all groups
+groupRouter.get("/groups",captureUserFromAuthToken,requireLogin,  groupController.viewAllGroup)
+ 
 
-groupRouter.get("/groups",captureUserFromAuthToken,requireLogin, authController.viewAllGroup)
+//Add member to a private group
+groupRouter.get("/groups/:groupID/members", captureUserFromAuthToken,requireLogin, validate(authValidation.addMember) ,groupController.addMember)
+
+//View the groups in which a user has joined:
+groupRouter.get("/groups/mine", captureUserFromAuthToken,requireLogin, validate(authValidation.member) ,groupController.viewGroups)
 
 export default groupRouter

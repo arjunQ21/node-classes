@@ -110,33 +110,7 @@ const login = catchAsync(async function (req, res) {
   );
     return res.json("Updated New Password !!!")
   })
-//To create a new group
-  const createGroup = catchAsync (async function(req,res){
 
-      const { name, description , isPrivate} = req.body;
 
-      const existingName = await findGroupByName(name);
-      if (existingName){
-        throw new Error("Group Name already exists . Please use different group name")
-      }
-      const group = await Group.create(
-        { ...req.body, creatorID: req.user._id }
-      )
-      return res.json({group});
-  }  )
-//To view all public group
-  const viewAllGroup= catchAsync (async function (req,res){
-
-    // to check for the private group
-    // const groupName = await Group.find({isPrivate: true});
-    
-    const groupName = await Group.find({isPrivate: true});
-    if(groupName.length === 0){
-      throw new Error ("Not found any group")
-    }
-    return res.json(groupName);
-
-  })
-
-const authController = { register,login , forgotPassword, newPassword, createGroup, viewAllGroup}
+const authController = { register,login , forgotPassword, newPassword}
 export default authController

@@ -13,6 +13,14 @@ export default{
        
       })
     },
+
+    addMember:
+    {
+      body: Joi.object().keys({
+
+        memberId: Joi.string().min(3).required(),
+      })
+    }
  
 }
 
