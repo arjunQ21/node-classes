@@ -12,6 +12,8 @@ groupRouter.post('/',captureUserAuthToken,requireLogin,validate(validationSchema
 
 groupRouter.get('/',captureUserAuthToken,requireLogin,GroupController.ViewAllPublicGroup);
 
+groupRouter.get('/mine',captureUserAuthToken,requireLogin,GroupController.viewJoinedGroup);
+
 groupRouter.get('/:groupId',captureUserAuthToken,requireLogin,GroupController.ViewGroup);
 
 groupRouter.put('/:groupId',captureUserAuthToken,requireLogin,GroupController.EditGroup);

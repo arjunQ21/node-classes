@@ -1,6 +1,6 @@
-
 import catchAsync from "../helpers/catchAsync.js";
 import Group from "../models/group.js";
+import GroupMember from "../models/groupMember.js";
 
 
 const CreateGroup=catchAsync(async(req,res)=>{
@@ -58,6 +58,13 @@ const EditGroup=catchAsync(async(req,res)=>{
     })
 })
 
+const viewJoinedGroup=catchAsync(async(req,res)=>{
+    
+    const group=await GroupMember.find({userId:req.user._id});
+    return res.json({
+       group 
+    })
+})
 
 const deleteGroup=catchAsync(async(req,res)=>{
     const groupId = req.params.groupId; 
@@ -80,6 +87,6 @@ const deleteGroup=catchAsync(async(req,res)=>{
 
 
 
-const GroupController={CreateGroup,ViewAllPublicGroup,ViewGroup,EditGroup,deleteGroup};
+const GroupController={CreateGroup,ViewAllPublicGroup,ViewGroup,EditGroup,deleteGroup,viewJoinedGroup};
 
 export default GroupController;
