@@ -116,7 +116,7 @@ const login = catchAsync(async function (req, res) {
 
       const { name, description , isPrivate} = req.body;
       const group = await Group.create(
-        { ...req.body, creatorId: req.user._id }
+        { ...req.body, creatorID: req.user._id }
       )
 
       return res.json({group});
