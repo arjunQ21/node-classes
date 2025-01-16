@@ -17,6 +17,8 @@ groupRouter.get('/:groupId',captureUserAuthToken,requireLogin,GroupController.Vi
 groupRouter.put('/:groupId',captureUserAuthToken,requireLogin,GroupController.EditGroup);
 
 
+groupRouter.delete('/:groupId',captureUserAuthToken,requireLogin,GroupController.deleteGroup);
+
 
 
 

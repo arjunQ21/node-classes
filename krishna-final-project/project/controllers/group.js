@@ -43,8 +43,8 @@ const EditGroup=catchAsync(async(req,res)=>{
    if(!existingGroup){
     throw new Error ("Group not found")
    }
-
-   if(existingGroup.creatorID!==req.user._id){
+   
+   if((existingGroup.creatorID).toString()!==(req.user._id).toString()){
     throw new Error ("Only creator can edit the group");
    }
 
@@ -59,9 +59,27 @@ const EditGroup=catchAsync(async(req,res)=>{
 })
 
 
+const deleteGroup=catchAsync(async(req,res)=>{
+    const groupId = req.params.groupId; 
+    const existingGroup=await Group.findOne({_id:groupId});
+   if(!existingGroup){
+    throw new Error ("Group not found")
+   }
+
+   if((existingGroup.creatorID).toString()!==(req.user._id).toString()){
+    throw new Error ("Only creator can delete the group");
+   }
+
+   await existingGroup.deleteOne();
+    return res.json({
+       "message":"Successfully Group updated"
+    })
+})
 
 
 
-const GroupController={CreateGroup,ViewAllPublicGroup,ViewGroup,EditGroup};
+
+
+const GroupController={CreateGroup,ViewAllPublicGroup,ViewGroup,EditGroup,deleteGroup};
 
 export default GroupController;

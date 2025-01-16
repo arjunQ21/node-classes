@@ -145,7 +145,7 @@ const resetPassword = catchAsync(async (req, res) => {
         throw new Error("You have exceeded the maximum number of attempts.");
       }
   
- 
+      
   
       // Match the OTP
       if (String(otp) !== String(existingUser.otp)) {
@@ -155,7 +155,9 @@ const resetPassword = catchAsync(async (req, res) => {
         throw new Error("OTP does not match");
       }
   
-     
+     if(existingUser.password===password){
+        throw new Error ("Current password matched to new Password: New password required");
+     }
       existingUser.password = await bcrypt.hash(password, 10);
       
       // Clear OTP and OTP expiration after successful verification
