@@ -62,7 +62,6 @@ const RemoveGroupMember = catchAsync(async (req, res) => {
 const JoinGroup = catchAsync(async (req, res) => {
   const group_Id = req.params.groupId;
 
-  
   const existingGroup = await Group.findOne({ _id: group_Id });
 
   if (!existingGroup) {
@@ -71,7 +70,7 @@ const JoinGroup = catchAsync(async (req, res) => {
   if (existingGroup.isPrivate===true) {
     throw new Error("User can only join the group which is public");
   }
-  const existingUser = await User.findOne({ _id: req.body.userId });
+  const existingUser = await User.findOne({ _id: req.user._id });
   if (!existingUser) {
     throw new Error("User not found");
   }

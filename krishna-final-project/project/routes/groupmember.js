@@ -28,7 +28,6 @@ groupMemberRouter.post(
     "/groups/:groupId/join",
     captureUserAuthToken,
     requireLogin,
-    validate(validationSchema.addGroupMember),
     groupMemberController.JoinGroup
   );
 

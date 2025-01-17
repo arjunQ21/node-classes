@@ -2,91 +2,112 @@ import catchAsync from "../helpers/catchAsync.js";
 import Group from "../models/group.js";
 import GroupMember from "../models/groupMember.js";
 
+const CreateGroup = catchAsync(async (req, res) => {
+  const { name, description, isPrivate } = req.body;
+  const existingGroup = await Group.findOne({ name: req.body.name });
 
-const CreateGroup=catchAsync(async(req,res)=>{
-    const { name,description,isPrivate}=req.body;
-    const existingGroup=await Group.findOne({name:req.body.name});
-
-    if(existingGroup){
-        throw new Error ("Group Name already exist")
-    }
-    const newGroup=await Group.create({
-        name,description,creatorID:req.user._id,isPrivate
-    });
-
-    return res.json({
-        message:"Successfully Group Created",
-        Group:{...newGroup.toObject(),_id:undefined,__v:undefined}
+  if (existingGroup) {
+    throw new Error("Group Name already exist");
+  }
+  const newGroup = await Group.create({
+    name,
+    description,
+    creatorID: req.user._id,
+    isPrivate
+  });
+  const newGroupMember = (
+    await GroupMember.create({
+      userId: req.user._id,
+      groupId: newGroup._id
     })
-})
-const ViewAllPublicGroup=catchAsync(async(req,res)=>{
-    const group=await Group.find({isPrivate:false});
-    return res.json({
-       group 
-    })
-})
+  ).toObject();
 
-const ViewGroup=catchAsync(async(req,res)=>{
-    const groupId = req.params.groupId; 
-    const group=await Group.findOne({_id:groupId});
-   if(!group){
-    throw new Error ("Group not found")
-   }
-    return res.json({
-       group 
-    })
-})
+  //   console.log(newGroupMember);
 
-const EditGroup=catchAsync(async(req,res)=>{
-    const groupId = req.params.groupId; 
-    const existingGroup=await Group.findOne({_id:groupId});
-   if(!existingGroup){
-    throw new Error ("Group not found")
-   }
-   
-   if((existingGroup.creatorID).toString()!==(req.user._id).toString()){
-    throw new Error ("Only creator can edit the group");
-   }
+  return res.json({
+    message: "Successfully Group Created",
+    Group: { ...newGroup.toObject(), _id: undefined, __v: undefined }
+  });
+});
 
-   existingGroup.name=req.body.name;
-   existingGroup.description=req.body.description;
-   existingGroup.isPrivate=req.body.isPrivate;
+const ViewAllPublicGroup = catchAsync(async (req, res) => {
+  const group = await Group.find({ isPrivate: false });
+  return res.json({
+    group
+  });
+});
 
-   await existingGroup.save();
-    return res.json({
-       "message":"Successfully Group updated"
-    })
-})
+const ViewGroup = catchAsync(async (req, res) => {
+  const groupId = req.params.groupId;
+  const group = await Group.findOne({ _id: groupId });
+  if (!group) {
+    throw new Error("Group not found");
+  }
+  return res.json({
+    group
+  });
+});
 
-const viewJoinedGroup=catchAsync(async(req,res)=>{
-    
-    const group=await GroupMember.find({userId:req.user._id});
-    return res.json({
-       group 
-    })
-})
+const EditGroup = catchAsync(async (req, res) => {
+  const groupId = req.params.groupId;
+  const existingGroup = await Group.findOne({ _id: groupId });
+  if (!existingGroup) {
+    throw new Error("Group not found");
+  }
 
-const deleteGroup=catchAsync(async(req,res)=>{
-    const groupId = req.params.groupId; 
-    const existingGroup=await Group.findOne({_id:groupId});
-   if(!existingGroup){
-    throw new Error ("Group not found")
-   }
+  if (existingGroup.creatorID.toString() !== req.user._id.toString()) {
+    throw new Error("Only creator can edit the group");
+  }
 
-   if((existingGroup.creatorID).toString()!==(req.user._id).toString()){
-    throw new Error ("Only creator can delete the group");
-   }
+  existingGroup.name = req.body.name;
+  existingGroup.description = req.body.description;
+  existingGroup.isPrivate = req.body.isPrivate;
 
-   await existingGroup.deleteOne();
-    return res.json({
-       "message":"Successfully Group updated"
-    })
-})
+  await existingGroup.save();
+  return res.json({
+    message: "Successfully Group updated"
+  });
+});
 
+const viewJoinedGroup = catchAsync(async (req, res) => {
+  const group = await GroupMember.find({ userId: req.user._id });
+  return res.json({
+    group
+  });
+});
 
+const deleteGroup = catchAsync(async (req, res) => {
+  const groupId = req.params.groupId;
+  const existingGroup = await Group.findOne({ _id: groupId });
+  if (!existingGroup) {
+    throw new Error("Group not found");
+  }
 
+  if (existingGroup.creatorID.toString() !== req.user._id.toString()) {
+    throw new Error("Only creator can delete the group");
+  }
 
+  await existingGroup.deleteOne();
 
-const GroupController={CreateGroup,ViewAllPublicGroup,ViewGroup,EditGroup,deleteGroup,viewJoinedGroup};
+  const existingGroupMember = await GroupMember.find({ groupId: groupId });
+  //    console.log(existingGroupMember)
+
+  if (existingGroupMember.length > 0) {
+    await GroupMember.deleteMany({ groupId: groupId });
+  }
+
+  return res.json({
+    message: "Successfully Group deleted"
+  });
+});
+
+const GroupController = {
+  CreateGroup,
+  ViewAllPublicGroup,
+  ViewGroup,
+  EditGroup,
+  deleteGroup,
+  viewJoinedGroup
+};
 
 export default GroupController;
