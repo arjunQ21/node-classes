@@ -12,7 +12,7 @@ userRouter.post("/register", validate(authValidation.register) , authController.
 
 userRouter.get("/login", validate(authValidation.login) , authController.login  )
 
-userRouter.post("/recoverPassword", validate(authValidation.forgotPassword), authController.forgotPassword )
+userRouter.post("/forgotPassword", validate(authValidation.forgotPassword), authController.forgotPassword )
 
 userRouter.post("/newPassword", validate(authValidation.newPassword), authController.newPassword)
 

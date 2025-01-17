@@ -17,9 +17,12 @@ groupRouter.get("/groups",captureUserFromAuthToken,requireLogin,  groupControlle
  
 
 //Add member to a private group
-groupRouter.get("/groups/:groupID/members", captureUserFromAuthToken,requireLogin, validate(authValidation.addMember) ,groupController.addMember)
+groupRouter.post("/groups/:groupID/members", captureUserFromAuthToken,requireLogin, validate(authValidation.addMember) ,groupController.addMember)
 
 //View the groups in which a user has joined:
 groupRouter.get("/groups/mine", captureUserFromAuthToken,requireLogin, validate(authValidation.member) ,groupController.viewGroups)
 
+//Join public group
+groupRouter.post("/groups/:groupID/join", captureUserFromAuthToken,requireLogin, validate(authValidation.Validgroup) ,groupController.joinPublicGroup)
 export default groupRouter
+

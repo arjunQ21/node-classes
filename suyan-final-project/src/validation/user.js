@@ -47,6 +47,12 @@ export default{
             })
           },
 
+          Validgroup: {
+            params: Joi.object().keys({
+              groupID: Joi.string().length(24).hex().required() 
+            })
+          },
+
           
        addMember:
           {
