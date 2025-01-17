@@ -14,4 +14,24 @@ groupRouter.post(
   groupController.createGroup
 );
 
-export default groupRouter;
+groupRouter.get(
+  "/groups",getUserFromAuthToken,
+  groupController.getAllPublicGroups
+);
+
+const singleGroupRouter = Router();
+singleGroupRouter.put(
+  "/:groupId",
+  getUserFromAuthToken,
+  validate({
+    body: groupValidation.validateCreateGroup,
+  }),
+  groupController.editGroup
+);
+
+singleGroupRouter.delete(
+  "/:groupId",
+  getUserFromAuthToken,
+groupController.deleteGroup
+);
+export {groupRouter,singleGroupRouter};
