@@ -1,0 +1,3 @@
+Create plan for Message sending API.
+
+Be mindful to create this plan in the same way as created earlier for Group management API in github projects.
