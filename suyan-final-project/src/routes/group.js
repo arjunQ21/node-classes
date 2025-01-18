@@ -24,5 +24,16 @@ groupRouter.get("/groups/mine", captureUserFromAuthToken,requireLogin, validate(
 
 //Join public group
 groupRouter.post("/groups/:groupID/join", captureUserFromAuthToken,requireLogin, validate(authValidation.Validgroup) ,groupController.joinPublicGroup)
+
+//edit group
+groupRouter.put("/groups/:groupId", captureUserFromAuthToken,requireLogin, validate(authValidation.editGroup) ,groupController.editGroup)
+
+//delete group
+groupRouter.delete("/groups/:groupId", captureUserFromAuthToken,requireLogin, validate(authValidation.deleteGroup) ,groupController.deleteGroup)
+
+//remove group member
+groupRouter.delete( "/groups/:groupId/members",  captureUserFromAuthToken,  requireLogin,  validate(authValidation.removeGroupMember),  groupController.removeGroupMember);
+
+
 export default groupRouter
 
