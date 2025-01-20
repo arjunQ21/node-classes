@@ -63,8 +63,6 @@ const uploadImage = catchAsync(async function (req, res) {
     await req.currentProduct.save();
 
     return res.send({
-        file: req.file,
-        body: req.body,
         product: req.currentProduct.toObject()
     })
 })
