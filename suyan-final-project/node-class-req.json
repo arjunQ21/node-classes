@@ -1,0 +1,1017 @@
+{
+  "name": "node-class-req",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "hw-mongo",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8000",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"date\": \"2025-01-04\",\n  \"source\": \"coinbase\",\n  \"updatedBy\": \"hari bahadur\",\n  \"currencies\": [\n    {\n      \"name\": \"BitCoin\",\n      \"exchangeRate\": 97000,\n      \"foundIn\": 2005\n    },\n    {\n      \"name\": \"Ethereum\",\n      \"exchangeRate\": 3200,\n      \"foundIn\": 2013\n    },\n    {\n      \"name\": \"DogeCoin\",\n      \"exchangeRate\": 0.32,\n      \"foundIn\": 2016\n    },\n    {\n      \"name\": \"Stack\",\n      \"exchangeRate\": 2.2,\n      \"foundIn\": 2019\n    }\n  ]\n}\n\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "suyan req",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:9000/?first_num=-10&last_num=-2&operation=division",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "first_num",
+            "value": "-10",
+            "type": "query",
+            "enabled": true
+          },
+          {
+            "name": "last_num",
+            "value": "-2",
+            "type": "query",
+            "enabled": true
+          },
+          {
+            "name": "operation",
+            "value": "division",
+            "type": "query",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "mini-project",
+      "items": [
+        {
+          "type": "folder",
+          "name": "group",
+          "items": [
+            {
+              "type": "http",
+              "name": "Create Group",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:8000/newPassword",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"email\": \"samirgrbg561@gmail.com\",\n  \"otp\": \"441349\",\n  \"NewPassword\" : \"123456789\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "View all  Public Group",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8000/group",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"ui ux-Class\",\n  \"description\": \"Brand Builder  class\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwNDU5ODV9.KAK5VdJj1gr7o8wXRsaPSngS9nKOhtVSKRVbOngzAaI"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Add member to a group",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8000/groups/678e2175e6d9e4704ed0e752/members",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"memberId\" : \"6787d5004d4ee406a4cdc513\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzczNjc2ODJ9.g-DBGTPoWIVAFkN6m3d0qktkWXc1EFZvkpG76Cy8mEk"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "view member joined group",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8000/groups/67893a7a2c428862efa139c4/members",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"ui ux-Class\",\n  \"description\": \"Brand Builder  class\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwNDU5ODV9.KAK5VdJj1gr7o8wXRsaPSngS9nKOhtVSKRVbOngzAaI"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "login",
+          "items": [
+            {
+              "type": "http",
+              "name": "Register User",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost/9002",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Recover Password",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8000/register",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"username\": \"suyan-demo\",\n  \"email\": \"suysanwsthapa07@gmail.com\",\n  \"password\": \"suyan123\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "New Password",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8000/newPassword",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"email\": \"samirgrbg561@gmail.com\",\n  \"otp\": \"441349\",\n  \"NewPassword\" : \"123456789\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Login",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8000/regitser",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"username\": \"suyan-demo\",\n  \"email\": \"suysanwsthapa07@gmail.com\",\n  \"password\": \"suyan123\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "send message",
+          "items": [
+            {
+              "type": "http",
+              "name": "send messagw",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8000/groups/678e2175e6d9e4704ed0e752/messages",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"content\": \" \"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzczNjc2ODJ9.g-DBGTPoWIVAFkN6m3d0qktkWXc1EFZvkpG76Cy8mEk"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "view message",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:8000/groups/678e2175e6d9e4704ed0e752/messages",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"content\": \" \"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzczNjc2ODJ9.g-DBGTPoWIVAFkN6m3d0qktkWXc1EFZvkpG76Cy8mEk"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "edit message",
+              "seq": 3,
+              "request": {
+                "url": "http://localhost:8000/groups/678e2175e6d9e4704ed0e752/messages",
+                "method": "PUT",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"content\": \"new content \"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzczNjc2ODJ9.g-DBGTPoWIVAFkN6m3d0qktkWXc1EFZvkpG76Cy8mEk"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "delete messsage",
+              "seq": 4,
+              "request": {
+                "url": "http://localhost:8000/groups/678e2175e6d9e4704ed0e752/messages",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"content\": \"new content \"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzczNjc2ODJ9.g-DBGTPoWIVAFkN6m3d0qktkWXc1EFZvkpG76Cy8mEk"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "viewsapp",
+      "items": [
+        {
+          "type": "http",
+          "name": "Get all views",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:7000/e/12q",
+            "method": "PUT",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\" : \"cargg\",\n   \"price\" : \n    200  ,\n  \"manufacturer\" : \"elonmusk\",\n    \"makeYear\" : \"2002\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "folder",
+          "name": "login",
+          "items": [
+            {
+              "type": "http",
+              "name": "Add product",
+              "seq": 1,
+              "request": {
+                "url": "http:localhost:9000/auth/product",
+                "method": "POST",
+                "headers": [
+                  {
+                    "name": "x-email",
+                    "value": "suyanthapa07@gmail.com",
+                    "enabled": true
+                  },
+                  {
+                    "name": "x-password",
+                    "value": "123456789@#suyan",
+                    "enabled": true
+                  }
+                ],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n    \"name\": \"product ko name\",\n  \"cost\": 200,\n  \n  \"stockQuantity\": \"12\"\n \n     \n  \n}\n\n",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Get user details",
+              "seq": 2,
+              "request": {
+                "url": "http:localhost:9000",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"suyan Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"address\": \"123 Main Street, Springfield, USA\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"SecurePassword123\"\n}\n",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "library",
+          "items": [
+            {
+              "type": "http",
+              "name": "ADD LOGIN DETAILS",
+              "seq": 2,
+              "request": {
+                "url": "http://localhost:9000",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "none",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "get metadata",
+              "seq": 1,
+              "request": {
+                "url": "http://localhost:9000/books/",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n \"author\" : \"Suyan Thapa\",\n  \"title\": \"NodeJS Advance\",\n  \"publishedYear\" : \"2002\",\n  \"genre\" : \"education\",\n  \"rating\" : 4\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "jwt product",
+          "items": [
+            {
+              "type": "http",
+              "name": "get product from speciifc user",
+              "seq": 1,
+              "request": {
+                "url": "http:localhost:9000/products/677f81b9738cc3287d11a7ed",
+                "method": "GET",
+                "headers": [
+                  {
+                    "name": "x-email",
+                    "value": "suyanthapa07@gmail.com",
+                    "enabled": true
+                  },
+                  {
+                    "name": "x-password",
+                    "value": "123456789@#suyan",
+                    "enabled": true
+                  }
+                ],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n    \"name\": \"product ko name\",\n  \"cost\": 200,\n  \n  \"stockQuantity\": \"12\"\n \n     \n  \n}\n\n",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "get specifc product",
+              "seq": 2,
+              "request": {
+                "url": "http:localhost:9000",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"suyan Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"address\": \"123 Main Street, Springfield, USA\",\n  \"phone\": \"+1234567890\",\n  \"password\": \"SecurePassword123\"\n}\n",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "register",
+              "seq": 3,
+              "request": {
+                "url": "http:localhost:9000/auth/register",
+                "method": "POST",
+                "headers": [
+                  {
+                    "name": "x-email",
+                    "value": "suyanthapa07@gmail.com",
+                    "enabled": true
+                  },
+                  {
+                    "name": "x-password",
+                    "value": "123456789@#suyan",
+                    "enabled": true
+                  }
+                ],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n   \n     \n  \n}\n\n",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "name": "messenger",
+          "items": [
+            {
+              "type": "http",
+              "name": "Add new members",
+              "seq": 6,
+              "request": {
+                "url": "http:localhost:8000/groups/678bf22968688576c830d92b/members",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"memberId\": \"6789d332c5cbb2775ac4f4f6\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcyMjQ2OTF9.jPPUASyD_Czyq3qz_MpxnLBW8mSfVfRMRfGAj7FkbqI"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Create new group",
+              "seq": 5,
+              "request": {
+                "url": "http:localhost:8000/groups",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"new by suyan\",\n  \"description\": \"Brand Builder Class\",\n  \"isPrivate\" : true\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcyMjQ2OTF9.jPPUASyD_Czyq3qz_MpxnLBW8mSfVfRMRfGAj7FkbqI"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "delete group",
+              "seq": 11,
+              "request": {
+                "url": "http:localhost:8000/groups/678bed0e2be9f05cadf04bb3",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"edited group\",\n  \"description\": \"Brand Builder Class\",\n  \"isPrivate\" : false\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwODU3NTN9.mXD8iluAMMbAhKRriZkWjdF9Lvq_nOa1czRlKyKcPWg"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "edit group",
+              "seq": 10,
+              "request": {
+                "url": "http:localhost:8000/groups/678beb7f5aad7b76c3463035",
+                "method": "PUT",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"edited group\",\n  \"description\": \"Brand Builder Class\",\n  \"isPrivate\" : false\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwODU3NTN9.mXD8iluAMMbAhKRriZkWjdF9Lvq_nOa1czRlKyKcPWg"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Forgot Password",
+              "seq": 3,
+              "request": {
+                "url": "http:localhost:8000/forgotPassword",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"email\":  \"suyanthapa07@gmail.com\"\n \n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": ""
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Join public group",
+              "seq": 9,
+              "request": {
+                "url": "http:localhost:8000/groups/678bef05258d6f3aa1efea45/join",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwODU3NTN9.mXD8iluAMMbAhKRriZkWjdF9Lvq_nOa1czRlKyKcPWg"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "joined group",
+              "seq": 7,
+              "request": {
+                "url": "http:localhost:8000/groups/mine",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwODU3NTN9.mXD8iluAMMbAhKRriZkWjdF9Lvq_nOa1czRlKyKcPWg"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Login User",
+              "seq": 2,
+              "request": {
+                "url": "http:localhost:8000/login",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"email\":  \"suyanthapa07@gmail.com\",\n  \"password\": \"suyanthapa\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "New Password",
+              "seq": 4,
+              "request": {
+                "url": "http:localhost:8000/newPassword",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"email\":  \"suyanthapa07@gmail.com\",\n  \"password\": \"suyanthapa\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Register User",
+              "seq": 2,
+              "request": {
+                "url": "http:localhost:8000/register",
+                "method": "POST",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"username\": \"demo\",\n  \"email\":  \"goreysuyan777@gmail.com\",\n  \"password\": \"suyanthapa\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "none"
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "Remove group member",
+              "seq": 12,
+              "request": {
+                "url": "http:localhost:8000/groups/678bf22968688576c830d92b/members",
+                "method": "DELETE",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"memberId\": \"6789d332c5cbb2775ac4f4f6\"\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcyMjQ2OTF9.jPPUASyD_Czyq3qz_MpxnLBW8mSfVfRMRfGAj7FkbqI"
+                  }
+                }
+              }
+            },
+            {
+              "type": "http",
+              "name": "View all groups",
+              "seq": 8,
+              "request": {
+                "url": "http:localhost:8000/groups",
+                "method": "GET",
+                "headers": [],
+                "params": [],
+                "body": {
+                  "mode": "json",
+                  "json": "{\n  \"name\": \"digital\",\n  \"description\": \"digital marketing\",\n  \"isPrivate\" : true\n}",
+                  "formUrlEncoded": [],
+                  "multipartForm": []
+                },
+                "script": {},
+                "vars": {},
+                "assertions": [],
+                "tests": "",
+                "docs": "",
+                "auth": {
+                  "mode": "bearer",
+                  "bearer": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Nzg3ZDM3MjU3NmFlZWVlMmVjMzFjMjAiLCJpYXQiOjE3MzcwODU3NTN9.mXD8iluAMMbAhKRriZkWjdF9Lvq_nOa1czRlKyKcPWg"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "node-class-req",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
