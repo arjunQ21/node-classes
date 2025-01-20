@@ -38,13 +38,20 @@ const ViewAllPublicGroup = catchAsync(async (req, res) => {
 });
 
 const ViewGroup = catchAsync(async (req, res) => {
-  const groupId = req.params.groupId;
-  const group = await Group.findOne({ _id: groupId });
+  const groupid = req.params.groupId;
+  const group = await Group.findOne({ _id: groupid });
   if (!group) {
     throw new Error("Group not found");
   }
+  const groupMember=await GroupMember.find({userId:req.user._id});
+  // console.log(groupMember[0].groupId.toString())
+
+if(group._id.toString()!==groupMember[0].groupId.toString()){
+  throw new Error ("Not allowed to view the group")
+}
+
   return res.json({
-    group
+    groupMember
   });
 });
 
