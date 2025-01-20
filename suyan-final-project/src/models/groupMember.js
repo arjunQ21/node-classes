@@ -10,12 +10,11 @@ groupId:{
   type: String,
 },
 
-joinDate:{
-  type: Date
-},
 seenMessageID:{
   type: String
 }
+},{
+  timestamps:true
 })
 
 

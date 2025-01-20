@@ -44,13 +44,11 @@ return res.json(groupName);
 //to add new member 
 const addMember = catchAsync ( async function(req,res){
 
-  const currentId= req.user._id.toString()
-
+const currentId= req.user._id
+  console.log(" my id:"+currentId);
   const {memberId} = req.body;
+  
 
-  if(memberId === currentId){
-    throw new Error(" You are creator of this group ---- Adding yourself  failed----Automatically, You are already in that group")
-  }
   
   const groupId = req.params.groupID;
   console.log(groupId);
@@ -58,29 +56,28 @@ const addMember = catchAsync ( async function(req,res){
   if(!group){
     throw new Error("Not found any group with given groupID")
   }
+  console.log("valid group is"+ group)
 
-  const checkMemberInGroup = await groupMember.find({
+  const checkMemberInGroup = await groupMember.findOne({
     groupId: groupId,
     userId: req.body.memberId
   })
 
-  if(!checkMemberInGroup ){
+
+
+  if(checkMemberInGroup ){
     throw new Error("Member is already in that group")
   }
-  else if(group.isPrivate === true){
-    if(currentId != group.creatorID){
+
+    if(currentId.toString() != group.creatorID.toString()){
       throw new Error("Only admin can add members in the group ----Permission denied")
     }
-  }
+  
 
-  // const existingUser = req.body.userId;
- 
- 
-  const Member = await User.findOne({_id: memberId});
-  const currentDate = new Date().toISOString().split('T')[0];
+  // const currentDate = new Date().toISOString().split('T')[0];
+    console.log(memberId);
 
-
-  const addMember = await groupMember.create({userId: Member._id, groupId: groupId, joinDate: currentDate})
+  const addMember = await groupMember.create({userId:memberId, groupId: groupId})
 
  return res.json({addMember});
 })

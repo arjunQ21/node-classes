@@ -7,18 +7,8 @@ export default{
     {
       body: Joi.object().keys({
 
-        name:Joi.string().min(3).required(),
-        description:Joi.string().min(3).required(),
-        isPrivate: Joi.boolean().required()
+        content:Joi.string().min(3).required(),
        
-      })
-    },
-
-    addMember:
-    {
-      body: Joi.object().keys({
-
-        memberId: Joi.string().min(3).required(),
       })
     }
  

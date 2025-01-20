@@ -36,7 +36,7 @@ export default{
       })
       },
 
-       group:
+      group:
           {
             body: Joi.object().keys({
       
@@ -86,8 +86,8 @@ export default{
           
        addMember:
           {
-            params: Joi.object().keys({
-              groupID: Joi.string().length(24).hex().required() 
+            body: Joi.object().keys({
+              memberId:Joi.string().length(24).hex().required()
             })
           }
 }

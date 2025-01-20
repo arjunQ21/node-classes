@@ -36,4 +36,3 @@ groupRouter.delete( "/groups/:groupId/members",  captureUserFromAuthToken,  requ
 
 
 export default groupRouter
-
