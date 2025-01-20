@@ -2,8 +2,8 @@ import { catchAsync } from "../helper/catchAsync.js";
 import User from "../model/user.js";
 import { createJWT, findUserByEmail } from "../service/user.js";
 import bcrypt from 'bcrypt';
-import { generateOTP, sendEmailWithOTP } from "../mailer/email.js";  // Import email functions
-import { Otp } from "../model/otp.js"; // OTP schema for storing OTP
+import { generateOTP, sendEmailWithOTP } from "../mailer/email.js";
+import { Otp } from "../model/otp.js";
 
 const register = catchAsync(async (req, res) => {
   const { email, username, password } = req.body;

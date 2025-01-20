@@ -11,11 +11,8 @@ const validateRemoveGroupMember = Joi.object({
 
 
 const validateFetchGroupMembers = Joi.object({
-  groupId: Joi.string().required().label("Group ID").messages({
-    "any.required": "Group ID is required.",
-    "string.empty": "Group ID cannot be empty.",
-  }),
-});
+  groupId: Joi.string().required().label("Group ID"),
+  })
 
 const groupMemberValidator = {
   validateAddGroupMember,

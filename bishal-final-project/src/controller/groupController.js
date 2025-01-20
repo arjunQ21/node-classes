@@ -17,7 +17,12 @@ const createGroup = async (req, res) => {
         isPrivate,
         createdAt: new Date(),
       });
-  
+      await GroupMember.create({
+        userId: req.user._id,
+        groupId: newGroup._id,
+        joinDate: new Date(),
+        seenMessageID: null, 
+      });
       return res.status(201).json({
         message: "Group created successfully.",
         group: newGroup,

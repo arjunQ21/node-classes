@@ -24,5 +24,7 @@ groupMemberRouter.delete(
     getUserFromAuthToken,
     groupMemberController.getUserJoinedGroups
   );
+  //join public group
+  groupMemberRouter.post("/:groupID/join",getUserFromAuthToken,groupMemberController.joinPublicGroup);
   
 export default groupMemberRouter;
