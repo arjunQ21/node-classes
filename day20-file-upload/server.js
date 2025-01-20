@@ -13,6 +13,8 @@ connectToDB().then(function (connectMessage) {
     app.use(express.json())
     app.use(captureUserFromAuthToken);
     app.use(express.static("public/web"))
+    // serving product images
+    app.use( "/images/products", express.static("images/products", ))
     app.use(routes);
     app.use(requestLogger)
     const port = process.env.PORT || 4000;
