@@ -53,9 +53,19 @@ const deleteSingle = catchAsync(async function (req, res) {
 })
 
 const uploadImage = catchAsync(async function (req, res) {
+
+    if (!req.file) {
+        throw new Error("File not uploaded.");
+    }
+
+    req.currentProduct.photo = req.file.path;
+
+    await req.currentProduct.save();
+
     return res.send({
         file: req.file,
-        body: req.body
+        body: req.body,
+        product: req.currentProduct.toObject()
     })
 })
 
