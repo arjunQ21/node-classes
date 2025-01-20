@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 
-const GroupMemberSchema = new Schema(
+const MessageSchema = new Schema(
   {
-    userId:{
+    sender:{
         type: Schema.Types.ObjectId,  // Make sure this is an ObjectId
         ref: 'User',  // Reference the User model
         required: true
@@ -12,13 +12,13 @@ const GroupMemberSchema = new Schema(
         ref: 'Group',  // Reference the User model
         required: true
     },
-    joinDate:{
-        type: Date,
-        default: Date.now
+    content:{
+        type:String,
+        required:true
     },
-    seenMessageID:{
-      type: [Schema.Types.ObjectId],
-        default: []
+    file:{
+        type:String,
+        required:false
     }
   },
   {
@@ -26,6 +26,6 @@ const GroupMemberSchema = new Schema(
   }
 );
 
-const GroupMember= model("GroupMember", GroupMemberSchema);
+const Message= model("Message", MessageSchema);
 
-export default GroupMember;
+export default Message;

@@ -7,28 +7,37 @@ const CreateGroup = catchAsync(async (req, res) => {
   const existingGroup = await Group.findOne({ name: req.body.name });
 
   if (existingGroup) {
-    throw new Error("Group Name already exist");
+    return res.status(400).json({
+      status: "fail",
+      message: "Group Name already exists",
+    });
   }
+
   const newGroup = await Group.create({
     name,
     description,
     creatorID: req.user._id,
-    isPrivate
+    isPrivate,
   });
-  const newGroupMember = (
-    await GroupMember.create({
-      userId: req.user._id,
-      groupId: newGroup._id
-    })
-  ).toObject();
 
-  //   console.log(newGroupMember);
+  const newGroupMember = await GroupMember.create({
+    userId: req.user._id,
+    groupId: newGroup._id,
+  });
 
-  return res.json({
-    message: "Successfully Group Created",
-    Group: { ...newGroup.toObject(), _id: undefined, __v: undefined }
+  return res.status(201).json({
+    status: "success",
+    data: {
+      message: "Successfully Group Created",
+      group: {
+        ...newGroup.toObject(),
+        _id: undefined,
+        __v: undefined,
+      },
+    },
   });
 });
+
 
 const ViewAllPublicGroup = catchAsync(async (req, res) => {
   const group = await Group.find({ isPrivate: false });
@@ -46,9 +55,13 @@ const ViewGroup = catchAsync(async (req, res) => {
   const groupMember=await GroupMember.find({userId:req.user._id});
   // console.log(groupMember[0].groupId.toString())
 
-if(group._id.toString()!==groupMember[0].groupId.toString()){
+if(group._id.toString()!==groupMember[0].groupId.toString() && group.isPrivate===true){
   throw new Error ("Not allowed to view the group")
 }
+// if( group.isPrivate===true ){
+//   throw new Error ("Not allowed to view the group")
+// }
+
 
   return res.json({
     groupMember
