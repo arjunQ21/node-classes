@@ -11,7 +11,8 @@ groupId:{
 },
 
 seenMessageID:{
-  type: String
+  type: [String],
+  default: []
 }
 },{
   timestamps:true

@@ -78,6 +78,7 @@ const currentId= req.user._id
     console.log(memberId);
 
   const addMember = await groupMember.create({userId:memberId, groupId: groupId})
+  
 
  return res.json({addMember});
 })

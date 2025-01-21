@@ -13,10 +13,16 @@ const messageSchema = new Schema ({
   content:{
     type: String,
     required: true
-  }
-}, { timestamps: true })
-
-
+  },
+  file:{
+    type:String,
+    required:false
+},
+},
+{
+timestamps: true
+}
+);
 
 
 const Message = model( "message", messageSchema);

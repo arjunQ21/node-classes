@@ -19,6 +19,8 @@ server.use(userRouter)
 server.use( groupRouter); 
 server.use( messageRouter); 
 
+server.use( "/message/file", express.static("message/file", ))
+
 
 server.listen(port , ()=>{
 
