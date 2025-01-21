@@ -76,14 +76,8 @@ const sendMessage = catchAsync (async function(req,res){
     { new: true } 
   );
 
-// Map content and file, but only include file if it exists
-const contentList = message.map(message => {
-  return message.file 
-    ? { content: message.content, file: message.file } 
-    : { content: message.content };
-});
 
-  res.json({ contentList})
+  res.json({ message})
   })
   // to edit message
   const editMessage = catchAsync( async function (req,res) {
