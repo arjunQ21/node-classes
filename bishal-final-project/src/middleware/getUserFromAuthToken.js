@@ -26,10 +26,7 @@ const getUserFromAuthToken = async function (req, res, next) {
             } else {
                 return res.status(401).json({ error: "User ID not found in token." });
             }
-        } else {
-            return res.status(401).json({ error: "Bearer token missing or invalid." });
         }
-
         next(); 
     } catch (e) {
         console.error("Auth Error: ", e.message);
