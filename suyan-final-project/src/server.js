@@ -7,7 +7,7 @@ import messageRouter from './routes/message.js';
 
 config();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3002 || 4000 || 8005;
 const server = express();
 
 
