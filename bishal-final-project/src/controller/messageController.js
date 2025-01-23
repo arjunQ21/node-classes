@@ -46,7 +46,7 @@ const sendMessage = async (req, res) => {
 
     let filePath = null;
     if (req.file) {
-      filePath = `/uploads/${req.file.filename}`;
+      filePath = `/images/messages/${req.file.filename}`;
     }
 
     const message = new Message({
@@ -190,11 +190,10 @@ const deleteMessage = async (req, res) => {
 //     });
 //   }
 // };
-
 const getMessages = async (req, res) => {
   try {
-    const groupId = req.params.groupId; 
-    const senderId = req.user._id.toString(); 
+    const groupId = req.params.groupId;
+    const senderId = req.user._id.toString();
 
     const groupMember = await GroupMember.findOne({ groupId, userId: senderId });
     if (!groupMember) {
@@ -204,25 +203,38 @@ const getMessages = async (req, res) => {
       });
     }
 
-    const messages = await Message.find({ groupId, isDeleted: false }).sort({ timestamp: -1 });
+    const messagesWithSenderInfo = await Message.find({ groupId, isDeleted: false })
+      .sort({ createdAt: -1 })
+      .populate('senderId', 'username')
+      .select('senderId content file ')
+      .lean();
 
-    const messagesWithSenderInfo = await Promise.all(
-      messages.map(async (message) => {
-        const sender = await User.findById(message.senderId);
-        return {
-          senderId: sender._id,
-          Sender: req.user.username,
-          content: message.content,
-          file: message.file,
-          timestamp: message.timestamp,
-        };
-      })
-    );
+    const result = [];
+    for (let i = 0; i < messagesWithSenderInfo.length; i++) {
+      const message = messagesWithSenderInfo[i];
+      result.push({
+        senderId: message.senderId._id,
+        Sender: message.senderId.username,
+        content: message.content,
+        file: message.file,
+        timestamp: message.timestamp,
+      });
+    }
+
+    if (messagesWithSenderInfo.length > 0) {
+      const latestMessageId = messagesWithSenderInfo[0]._id; 
+
+      await GroupMember.findOneAndUpdate(
+        { groupId, userId: senderId },
+        { seenMessageID: latestMessageId },
+        { new: true }
+      );
+    }
 
     return res.status(200).json({
       success: true,
       message: 'Messages retrieved successfully.',
-      data: messagesWithSenderInfo,
+      data: result,
     });
   } catch (error) {
     console.error('Error retrieving messages:', error);
@@ -232,7 +244,6 @@ const getMessages = async (req, res) => {
     });
   }
 };
-
 
 const messageController = { sendMessage,editMessage, deleteMessage, getMessages};
 export default messageController;
