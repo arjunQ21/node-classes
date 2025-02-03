@@ -1,0 +1,27 @@
+meta {
+  name: Set Image
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:3001/products/678e0b3040b0021cebec38c9/setImage
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{AUTH_TOKEN}}
+}
+
+body:json {
+  {
+    "cost": 450,
+    "stockQuantity": 10,
+    "name": "Chocopies"
+  }
+}
+
+body:multipart-form {
+  productImage: @file(/Users/arjunq21/Desktop/adhikari-tree-uploads/people/image-1719039827270-937981162.jpeg)
+}
